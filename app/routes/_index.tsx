@@ -4,10 +4,13 @@ import homeCSS from "~/styles/home.css?url";
 import Clouds from "~/components/clouds";
 import Stars from "~/components/stars";
 import Timeline from "~/components/timeline";
-import EmailForm from "~/components/emailForm";
+import EmailForm, { links as signupCSS } from "~/components/emailForm";
 import BetaForm from "~/components/betaForm";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: homeCSS }];
+export const links: LinksFunction = () => [
+  ...signupCSS(),
+  { rel: "stylesheet", href: homeCSS },
+];
 
 export const meta: MetaFunction = () => {
   return [
