@@ -23,6 +23,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ onSubmit }) => {
     <div className="popup" id="betaPopup" role="dialog" aria-labelledby="popupTitle">
       <h2 id="popupTitle">Apply for Beta Testing</h2>
       <form onSubmit={submitBeta}>
+        <input type="hidden" name="formType" value="beta" />
         <label htmlFor="name" className="sr-only">Name</label>
         <input
           type="text"

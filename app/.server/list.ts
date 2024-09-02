@@ -6,7 +6,7 @@ const { MAILGUN_API_KEY, MAILING_LIST_ADDRESS } = process.env;
 const mailgun = new Mailgun(FormData);
 const mg = mailgun.client({ username: 'api', key: MAILGUN_API_KEY || '' });
 
-interface User {
+export interface User {
   address: string;
   name?: string;
   vars?: {
@@ -16,12 +16,12 @@ interface User {
   upsert?: 'yes' | 'no';
 }
 
-export const addEmailToList = async (form: { beta?: any; name?: string; email: string }) => {
-  const userProfile: User = { address: form.email, subscribed: 'yes', upsert: 'yes' }
+export const addEmailToList = async (form: { vars?: any; name?: string; address: string }) => {
+  const userProfile: User = { address: form.address, subscribed: 'yes', upsert: 'yes' }
 
-  if (form.beta) {
+  if (form.vars) {
     userProfile.name = form.name;
-    userProfile.vars = { ...form.beta };
+    userProfile.vars = { ...form.vars };
   }
 
   try {
