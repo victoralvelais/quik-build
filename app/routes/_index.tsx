@@ -62,7 +62,20 @@ export default function Index() {
         <p>Transforming the Way You Host Your Applications</p>
         <EmailForm />
         <Timeline />
-        <p>Interested in beta testing? <span className="beta-link" onClick={() => setShowPopup(true)} onKeyDown={handleBetaLinkKeyDown} tabIndex={0} role="button">Apply here</span></p>
+        <p>Interested in beta testing? 
+          <span
+            className="beta-link"
+            onClick={() => {
+              console.log("Clicked on beta link")
+              setShowPopup(true)
+            }}
+            onKeyDown={handleBetaLinkKeyDown}
+            tabIndex={0}
+            role="button"
+          >
+            Apply here
+          </span>
+        </p>
       </div>
       {showPopup && <BetaForm onSubmit={() => setShowPopup(false)} />}
     </div>
