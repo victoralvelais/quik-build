@@ -60,7 +60,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ onSubmit }) => {
             <legend>What are you building?</legend>
             <div className={styles.checkboxGroup}>
               {['Blog', 'Store', 'Portfolio', 'Wiki', 'Other'].map((goal) => (
-                <div className={styles.betaContainer__checkboxItem} key={goal}>
+                <div className={styles.checkboxItem} key={goal}>
                   <input
                     type="checkbox"
                     id={`goal${goal}`}
@@ -79,7 +79,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ onSubmit }) => {
                 </div>
               ))}
             </div>
-            <div className={styles.betaContainer__otherInput} id="otherGoalInput" style={{ display: goals.includes('Other') ? 'block' : 'none' }}>
+            <div className={styles.otherInput} id="otherGoalInput" style={{ display: goals.includes('Other') ? 'block' : 'none' }}>
               <label htmlFor="otherGoal">Other goal</label>
               <input type="text" id="otherGoal" name="otherGoal" placeholder="Tell us what you're building" />
             </div>
@@ -89,9 +89,9 @@ const BetaForm: React.FC<BetaFormProps> = ({ onSubmit }) => {
         <div>
           <fieldset>
             <legend>How will you integrate?</legend>
-            <div className={styles.betaContainer__checkboxGroup}>
+            <div className={styles.checkboxGroup}>
               {['NPM Package', 'JSON', 'HTML', 'Other'].map((method) => (
-                <div className={styles.betaContainer__checkboxItem} key={method}>
+                <div className={styles.checkboxItem} key={method}>
                   <input
                     type="checkbox"
                     id={`integrate${method.replace(' ', '')}`}
@@ -104,7 +104,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ onSubmit }) => {
                 </div>
               ))}
             </div>
-            <div className={styles.betaContainer__otherInput} id="otherIntegrationInput" style={{ display: integration === 'Other' ? 'block' : 'none' }}>
+            <div className={styles.otherInput} id="otherIntegrationInput" style={{ display: integration === 'Other' ? 'block' : 'none' }}>
               <label htmlFor="otherIntegration">Other integration method</label>
               <input type="text" id="otherIntegration" name="otherIntegration" placeholder="Specify your integration method" />
             </div>
