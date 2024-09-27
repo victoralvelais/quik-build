@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import styles from "~/styles/beta.module.css"
 
 interface BetaFormProps {
-  onSubmit: () => void
+  closeModal: () => void
 }
 
-const BetaForm: React.FC<BetaFormProps> = ({ onSubmit }) => {
+const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
   const [name, setName] = useState('')
   const [betaEmail, setBetaEmail] = useState('')
   const [reason, setReason] = useState('')
@@ -16,16 +16,32 @@ const BetaForm: React.FC<BetaFormProps> = ({ onSubmit }) => {
     e.preventDefault()
     if (name && betaEmail && reason && goals.length > 0 && integration) {
       alert('Thank you for your interest! We will be in touch soon.')
-      onSubmit()
+      closeModal()
     } else {
       alert('Please fill out all fields.')
     }
   }
 
+  const handleClickOutside = (({ target, currentTarget }: React.MouseEvent<HTMLDivElement>) => {
+    if (target === currentTarget) closeModal();
+  });
+
+  const handleModalOverlayKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Escape') closeModal();
+  };
+
   return (
-    <section className={styles.modalOverlay}>
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <section 
+      className={styles.modalOverlay} 
+      onClick={handleClickOutside}
+      onKeyDown={handleModalOverlayKeyDown}
+      role="dialog"
+      aria-modal="true"
+    >
       <div className={styles.betaContainer}>
         <div className={styles.betaWrapper}>
+          <button className={styles.closeButton} onClick={closeModal}>×</button>
           <h1>Join Our Beta</h1>
           <form onSubmit={submitBeta} id="betaSignupForm">
             <input type="hidden" name="formType" value="beta" />

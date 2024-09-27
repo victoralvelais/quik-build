@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { json } from "@remix-run/node";
 import type { LinksFunction, MetaFunction, ActionFunction, ActionFunctionArgs } from "@remix-run/node";
 import homeCSS from "~/styles/home.css?url";
 import Clouds from "~/components/clouds";
 import Stars from "~/components/stars";
 import Timeline from "~/components/timeline";
-import EmailForm, { links as signupCSS } from "~/components/emailForm";
+import EmailForm from "~/components/emailForm";
 import BetaForm from "~/components/betaForm";
 import { addEmailToList, type User } from "~/.server/list";
 
 export const links: LinksFunction = () => [
-  ...signupCSS(),
+  // ...signupCSS(),
   { rel: "stylesheet", href: homeCSS },
 ];
 
@@ -43,18 +43,27 @@ export const action: ActionFunction = async ({ request }: ActionFunctionArgs) =>
   }
 }
 
+type KeyEvent = React.KeyboardEvent<HTMLElement> | KeyboardEvent
+
 export default function Index() {
   const [showPopup, setShowPopup] = useState(false)
 
-  const handleBetaLinkKeyDown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+  const handleBetaLinkKeyDown = ({ key }: KeyEvent) => {
+    if (key === 'Enter' || key === ' ') {
       setShowPopup(true)
+    } else if (key === 'Escape') {
+      setShowPopup(false);
     }
   }
 
+  useEffect(() => {
+    document.addEventListener('keydown', handleBetaLinkKeyDown);
+    return () => document.removeEventListener('keydown', handleBetaLinkKeyDown);
+  }, []);
+
   return (
     <div className="container">
-      <div className="moving-background"></div>
+      <div className="movingBackground"></div>
       <Stars />
       <Clouds />
       <div className="content">
@@ -64,11 +73,8 @@ export default function Index() {
         <Timeline />
         <p>Interested in beta testing? 
           <span
-            className="beta-link"
-            onClick={() => {
-              console.log("Clicked on beta link")
-              setShowPopup(true)
-            }}
+            className="betaLink"
+            onClick={() => setShowPopup(true)}
             onKeyDown={handleBetaLinkKeyDown}
             tabIndex={0}
             role="button"
@@ -77,7 +83,7 @@ export default function Index() {
           </span>
         </p>
       </div>
-      {showPopup && <BetaForm onSubmit={() => setShowPopup(false)} />}
+      {showPopup && <BetaForm closeModal={() => setShowPopup(false)} />}
     </div>
   )
 }

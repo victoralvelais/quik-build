@@ -1,11 +1,10 @@
-
-.signup-form {
+.signupForm {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
   flex-wrap: wrap;
 
-  .input-group {
+  .inputGroup {
     display: flex;
 
     input[type="email"],
@@ -53,4 +52,16 @@
       }
     }
   }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

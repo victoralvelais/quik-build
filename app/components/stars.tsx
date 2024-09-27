@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import styles from '~/styles/stars.module.css'
 
 const Stars: React.FC = () => {
   useEffect(() => {
@@ -7,14 +8,14 @@ const Stars: React.FC = () => {
 
   const createStars = () => {
     const starrysky = document.createElement('div')
-    starrysky.className = 'starry-sky'
-    starrysky.id = 'starry-sky'
+    starrysky.className = styles.starrySky
+    starrysky.id = 'starrySky'
     document.body.appendChild(starrysky)
     const starCount = 200
 
     for (let i = 0; i < starCount; i++) {
       const star = document.createElement('div')
-      star.className = 'star'
+      star.className = styles.star
       star.style.width = `${Math.random() * 2}px`
       star.style.height = star.style.width
       star.style.left = `${Math.random() * 100}%`

@@ -1,15 +1,12 @@
 import { useFetcher  } from "@remix-run/react"
-import { LinksFunction } from "@remix-run/node"
 import { useState } from "react"
-import styles from "~/styles/signup.css?url"
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }]
+import styles from "~/styles/signup.module.css"
 
 const EmailForm = () => {
   const [email, setEmail] = useState('')
   const fetcher = useFetcher()
 
-  const emailIsValid = (email) => {
+  const emailIsValid = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
     return emailRegex.test(email.trim())
   }
@@ -18,14 +15,14 @@ const EmailForm = () => {
     <>
       <fetcher.Form 
         method="post" 
-        className="signup-form" 
+        className={styles.signupForm} 
         onSubmit={(e) => {
           if (!emailIsValid(email)) e.preventDefault()
         }}
       >
-        <div className="input-group">
-          <label htmlFor="email" className="sr-only">Email address</label>
-          <div className={`email-input-wrapper ${email === '' ? 'neutral' : emailIsValid(email) ? 'valid' : 'invalid'}`}>
+        <div className={styles.inputGroup}>
+          <label htmlFor="email" className={styles.srOnly}>Email address</label>
+          <div className={`${styles.emailInputWrapper} ${email === '' ? styles.neutral : emailIsValid(email) ? styles.valid : styles.invalid}`}>
             <input
               type="email"
               id="email"
@@ -42,7 +39,7 @@ const EmailForm = () => {
         </div>
       </fetcher.Form>
       {fetcher.state === "submitting" && <p>Submitting...</p>}
-      {fetcher.state === "idle" && !fetcher.data && <div className="input-icon">
+      {fetcher.state === "idle" && !fetcher.data && <div className={styles.inputIcon}>
         {email === '' ? '' : emailIsValid(email) ? '✅ Valid' : '❌ Enter a valid email'}
       </div>}
       {fetcher.data?.success && <p>Thank you for joining our mailing list!</p>}

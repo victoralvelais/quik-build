@@ -1,0 +1,76 @@
+.timeline {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 20px 0;
+  overflow-x: hidden;
+}
+
+.timelineTrack {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.timelineTrack::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--completion-width, 0%);
+  height: 4px;
+  background: linear-gradient(to right, #0033cc, #4d79ff, #00ccff);
+  animation: gradientFlow 5s linear infinite;
+  background-size: 200% 200%;
+  transition: width 0.5s ease-out;
+}
+
+.timelineTrack::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: var(--completion-width, 0%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #00ccff;
+  transform: translateX(-50%);
+  transition: left 0.5s ease-out;
+}
+
+.timelineItem {
+  flex: 1;
+  max-width: 120px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  border: 3px solid #222;
+  z-index: 1;
+}
+
+.timelineItem[data-complete="false"]::before {
+  background-color: #555;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: -200% 0%;
+  }
+}
