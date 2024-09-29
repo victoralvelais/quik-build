@@ -13,7 +13,6 @@
       flex-grow: 1;
       padding: 0.75rem;
       border: 2px solid var(--primary-color);
-      border-right: none;
       border-radius: 5px 0 0 5px;
       background-color: var(--input-bg-color);
       color: var(--text-color);
@@ -32,6 +31,22 @@
       }
     }
 
+    .neutral {
+      border-right: 2px solid var(--primary-color);
+      border-radius: 5px 0 0 5px;
+    }
+    .valid {
+      border-color: #00cc00;
+      background-color: rgba(0, 204, 0, 0.2);
+    }
+    .invalid {
+      border-color: #ff0000;
+      background-color: rgba(255, 0, 0, 0.2);
+      &:focus {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      }
+    }
+
     button {
       padding: 0.75rem 1.25rem;
       background-color: var(--primary-color);
@@ -42,13 +57,15 @@
       font-size: 1rem;
       transition: background-color 0.3s ease;
 
-      &:hover {
+      &:hover, &:focus {
         background-color: #0033cc;
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
       }
-
+      
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(0, 89, 255, 0.5);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--secondary-color) 50%, transparent);
       }
     }
   }
@@ -64,4 +81,15 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.inputIcon {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }

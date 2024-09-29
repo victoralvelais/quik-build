@@ -22,7 +22,7 @@ const EmailForm = () => {
       >
         <div className={styles.inputGroup}>
           <label htmlFor="email" className={styles.srOnly}>Email address</label>
-          <div className={`${styles.emailInputWrapper} ${email === '' ? styles.neutral : emailIsValid(email) ? styles.valid : styles.invalid}`}>
+          <div className={email === '' ? styles.neutral : emailIsValid(email) ? styles.valid : styles.invalid}>
             <input
               type="email"
               id="email"
@@ -39,9 +39,9 @@ const EmailForm = () => {
         </div>
       </fetcher.Form>
       {fetcher.state === "submitting" && <p>Submitting...</p>}
-      {fetcher.state === "idle" && !fetcher.data && <div className={styles.inputIcon}>
-        {email === '' ? '' : emailIsValid(email) ? '✅ Valid' : '❌ Enter a valid email'}
-      </div>}
+      <div className={`${styles.inputIcon} ${email === '' ? styles.hidden : ''}`}>
+        {emailIsValid(email) ? '✅ Valid' : '❌ Enter a valid email'}
+      </div>
       {fetcher.data?.success && <p>Thank you for joining our mailing list!</p>}
       {fetcher.data?.error && <p>Error: {fetcher.data.error}</p>}
     </>
