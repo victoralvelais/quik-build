@@ -104,6 +104,15 @@ html {
       color: transparent;
     }
   }
+
+  p.beta {
+    display: flex;
+    justify-content: center;
+
+    span {
+      margin: 0 4px;
+    }
+  }
 }
 
 .features {

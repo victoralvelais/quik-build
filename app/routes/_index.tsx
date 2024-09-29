@@ -71,7 +71,8 @@ export default function Index() {
         <p>Transforming the Way You Host Your Applications</p>
         <EmailForm />
         <Timeline />
-        <p>Interested in beta testing? 
+        <p className="beta">
+          <span>Interested in beta testing?</span> 
           <span
             className="betaLink"
             onClick={() => setShowPopup(true)}
