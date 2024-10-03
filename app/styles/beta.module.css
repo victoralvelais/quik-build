@@ -1,5 +1,5 @@
 :root {
-  --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --primary-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   --background-gradient: linear-gradient(135deg, #0f172a, #1e293b);
   --text-color: #f3f4f6;
   --input-bg: rgba(255, 255, 255, 0.07);
