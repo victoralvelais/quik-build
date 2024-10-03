@@ -20,7 +20,7 @@
   left: 0;
   width: var(--completion-width, 0%);
   height: 4px;
-  background: linear-gradient(to right, #0033cc, #4d79ff, #00ccff);
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
   animation: gradientFlow 5s linear infinite;
   background-size: 200% 200%;
   transition: width 0.5s ease-out;
@@ -35,7 +35,7 @@
   height: 0;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-left: 12px solid #00ccff;
+  border-left: 12px solid var(--primary-color);
   transform: translateX(-50%);
   transition: left 0.5s ease-out;
 }
@@ -56,7 +56,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   border: 3px solid #222;
   z-index: 1;
 }

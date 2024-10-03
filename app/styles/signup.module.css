@@ -1,72 +1,76 @@
-.signupForm {
+:root {
+  --color-white: #ffffff;
+  --color-primary-grey: #9ea7b0;
+  --color-secondary-grey: #45515e;
+  --color-black: #0a0a0a;
+  --color-background: #111111;
+}
+
+.formContainer {
   display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
 
-  .inputGroup {
-    display: flex;
+.signupForm {
+  width: 100%;
+}
 
-    input[type="email"],
-    input[type="text"],
-    textarea {
-      flex-grow: 1;
-      padding: 0.75rem;
-      border: 2px solid var(--primary-color);
-      border-radius: 5px 0 0 5px;
-      background-color: var(--input-bg-color);
-      color: var(--text-color);
-      font-size: 1rem;
-      transition: all 0.3s ease;
+.inputContainer {
+  display: flex;
+  width: 100%;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.inputGroup {
+  display: flex;
+  width: 100%;
+  background-color: var(--color-background);
+  border-radius: 2px;
+
+  input[type="email"],
+  input[type="text"],
+  textarea {
+    flex-grow: 1;
+    padding: 12px 16px;
+    border: none;
+    background-color: transparent;
+    color: var(--color-white);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
 
       &:focus {
-        outline: none;
-        border-color: var(--secondary-color);
-        box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
-        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 10px color-mix(in srgb, var(--primary-color) 50%, transparent);
       }
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
+        color: var(--color-primary-grey);
       }
-    }
+  }
 
-    .neutral {
-      border-right: 2px solid var(--primary-color);
-      border-radius: 5px 0 0 5px;
-    }
-    .valid {
-      border-color: #00cc00;
-      background-color: rgba(0, 204, 0, 0.2);
-    }
-    .invalid {
-      border-color: #ff0000;
-      background-color: rgba(255, 0, 0, 0.2);
-      &:focus {
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-      }
-    }
+  button {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
 
-    button {
-      padding: 0.75rem 1.25rem;
-      background-color: var(--primary-color);
-      color: var(--text-color);
-      border: 2px solid var(--primary-color);
-      border-radius: 0 5px 5px 0;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-
-      &:hover, &:focus {
-        background-color: #0033cc;
-        background-color: var(--secondary-color);
-        border-color: var(--secondary-color);
-      }
-      
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--secondary-color) 50%, transparent);
-      }
+    &:hover, &:focus {
+      background-color: color-mix(in srgb, var(--primary-color) 70%, var(--text-color));
+    }
+    
+    &:focus {
+      box-shadow: 0 0 10px color-mix(in srgb, var(--primary-color) 50%, transparent);
     }
   }
 }
@@ -84,12 +88,35 @@
 }
 
 .inputIcon {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-primary-grey);
   transition: opacity 0.3s ease;
 }
 
 .hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.submitting, .success, .error {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-primary-grey);
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .inputWrapper {
+    flex-direction: column;
+  }
+
+  .inputWrapper input[type="email"] {
+    border-radius: 2px 2px 0 0;
+  }
+
+  .inputWrapper button {
+    border-radius: 0 0 2px 2px;
+    width: 100%;
+  }
 }

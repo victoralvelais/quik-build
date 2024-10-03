@@ -1,7 +1,7 @@
 :root {
-  --primary-color: #045ac3;
-  --secondary-color: #00ccff;
-  --text-color: #ffffff;
+  --primary-color: #F433AB;
+  --secondary-color: #3B2EEF;
+  --text-color: #F5E5EF;
   --input-bg-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -97,7 +97,7 @@ html {
     margin-bottom: 1rem;
 
     .highlight {
-      background: linear-gradient(45deg, #0033cc, #4d79ff, #00ccff);
+      background: linear-gradient(45deg, color-mix(in srgb, var(--primary-color) 30%, var(--text-color)), var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -161,7 +161,7 @@ html {
 }
 
 .betaLink {
-  color: var(--secondary-color);
+  color: color-mix(in srgb, var(--primary-color) 70%, var(--text-color));
   cursor: pointer;
   text-decoration: underline;
   transition: color 0.3s ease;
