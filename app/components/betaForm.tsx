@@ -47,7 +47,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
             <input type="hidden" name="formType" value="beta" />
         
             <div>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Name 🤗</label>
               <input
                 type="text"
                 id="name"
@@ -60,7 +60,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
             </div>
         
             <div>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email 📧</label>
               <input
                 type="email"
                 id="email"
@@ -74,7 +74,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
         
             <div>
               <fieldset>
-                <legend>What are you building?</legend>
+                <legend>What kind of project are you building? 💡</legend>
                 <div className={styles.checkboxGroup}>
                   {['Blog', 'Store', 'Portfolio', 'Wiki', 'Other'].map((goal) => (
                     <div className={styles.checkboxItem} key={goal}>
@@ -105,9 +105,9 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
         
             <div>
               <fieldset>
-                <legend>How will you integrate?</legend>
+                <legend>How will you integrate? 🔗</legend>
                 <div className={styles.checkboxGroup}>
-                  {['NPM Package', 'JSON', 'HTML', 'Other'].map((method) => (
+                  {['NPM', 'JSON', 'HTML', 'Other'].map((method) => (
                     <div className={styles.checkboxItem} key={method}>
                       <input
                         type="checkbox"
@@ -129,18 +129,18 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
             </div>
         
             <div>
-              <label htmlFor="betaReason">Why do you want to join our beta?</label>
+              <label htmlFor="betaReason">Why are you excited to join our beta? ✨</label>
               <textarea
                 id="betaReason"
                 name="betaReason"
                 required
-                placeholder="Tell us why you're excited to participate..."
+                placeholder="Share your creative vision and how we can help..."
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
               ></textarea>
             </div>
         
-            <button type="submit">Sign Up for Beta Access</button>
+            <button type="submit">Join the innovation 🚀</button>
           </form>
         </div>
       </div>
