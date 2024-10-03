@@ -41,7 +41,7 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
     >
       <div className={styles.betaContainer}>
         <div className={styles.betaWrapper}>
-          <button className={styles.closeButton} onClick={closeModal}>×</button>
+          <button className={styles.closeButton} onClick={closeModal} aria-label="Close beta signup form">×</button>
           <h1>Join Our Beta</h1>
           <form onSubmit={submitBeta} id="betaSignupForm">
             <input type="hidden" name="formType" value="beta" />
