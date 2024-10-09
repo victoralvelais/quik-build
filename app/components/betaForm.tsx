@@ -1,24 +1,34 @@
-import React, { useState } from "react"
+import { useState, useEffect } from "react"
+import { useFetcher } from "@remix-run/react"
 import styles from "~/styles/beta.module.css"
 
 interface BetaFormProps {
   closeModal: () => void
 }
 
-const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
+type FetcherData = {
+  success?: boolean;
+  error?: string;
+};
+
+const BetaForm: React.FC<BetaFormProps> = ({ closeModal }: { closeModal: () => void }) => {
+  const fetcher = useFetcher<FetcherData>()
   const [name, setName] = useState('')
   const [betaEmail, setBetaEmail] = useState('')
   const [reason, setReason] = useState('')
   const [goals, setGoals] = useState<string[]>([])
   const [integration, setIntegration] = useState('')
 
+  useEffect(() => {
+    if (fetcher.data?.success) setTimeout(() => closeModal(), 5000);
+  }, [fetcher.data, closeModal]);
+
   const submitBeta = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
     if (name && betaEmail && reason && goals.length > 0 && integration) {
-      alert('Thank you for your interest! We will be in touch soon.')
-      closeModal()
+      return true
     } else {
-      alert('Please fill out all fields.')
+      e.preventDefault()
+      return false
     }
   }
 
@@ -43,7 +53,12 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
         <div className={styles.betaWrapper}>
           <button className={styles.closeButton} onClick={closeModal} aria-label="Close beta signup form">×</button>
           <h1>Join Our Beta</h1>
-          <form onSubmit={submitBeta} id="betaSignupForm">
+          {!fetcher.data?.success && <fetcher.Form
+            id="betaSignupForm"
+            method="post" 
+            className={styles.signupForm} 
+            onSubmit={submitBeta}
+          >
             <input type="hidden" name="formType" value="beta" />
         
             <div>
@@ -133,7 +148,6 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
               <textarea
                 id="betaReason"
                 name="betaReason"
-                required
                 placeholder="Share your creative vision and how we can help..."
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
@@ -141,10 +155,20 @@ const BetaForm: React.FC<BetaFormProps> = ({ closeModal }) => {
             </div>
         
             <button type="submit">Join the innovation 🚀</button>
-          </form>
+          </fetcher.Form>}
+          {fetcher.state === "submitting" && <p className={styles.submitting}>Submitting...</p>}
+          {fetcher.data?.success && <p className={styles.success}>Thank you for joining our beta! We'll be in touch soon.</p>}
+          {fetcher.data?.error && (
+            <p className={styles.error}>
+              Error: {typeof fetcher.data.error === 'string' 
+                ? fetcher.data.error 
+                : JSON.stringify(fetcher.data.error)}
+            </p>
+          )}
         </div>
       </div>
     </section>
   )
 }
+
 export default BetaForm

@@ -10,7 +10,6 @@ import BetaForm from "~/components/betaForm";
 import { addEmailToList, type User } from "~/.server/list";
 
 export const links: LinksFunction = () => [
-  // ...signupCSS(),
   { rel: "stylesheet", href: homeCSS },
 ];
 
@@ -31,10 +30,15 @@ export const action: ActionFunction = async ({ request }: ActionFunctionArgs) =>
     if (type === "beta") {
       user.name = body.get('name') as string;
       user.vars = {
-        // beta user details
+        betaEmail: body.get('email') as string,
+        reason: body.get('betaReason') as string,
+        goals: body.getAll('goals').join(', '),
+        otherGoal: body.get('otherGoal') as string,
+        integration: body.getAll('integration').join(', ') as string,
+        otherIntegration: body.get('otherIntegration') as string
       };
     }
-  
+
     const result = await addEmailToList(user);
     return json(result);
   } catch (error) {
