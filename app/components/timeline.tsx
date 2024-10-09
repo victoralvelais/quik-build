@@ -5,11 +5,11 @@ const Timeline = () => {
   const [completionWidth, setCompletionWidth] = useState('0%');
 
   const milestones = useMemo(() => [
-    { complete: true, content: 'Notion DB & Page builds' },
+    { complete: true, content: 'Notion builds (DBs & pages)' },
     { complete: true, content: 'Auto site rebuilds' },
     { complete: false, content: 'User platform integration' },
     { complete: false, content: 'E-commerce support' },
-    { complete: false, content: 'Discord builds' },
+    { complete: false, content: 'Discord builds (forums & more)' },
   ], []);
 
   useEffect(() => {
