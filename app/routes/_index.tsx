@@ -71,8 +71,8 @@ export default function Index() {
       <Stars />
       <Clouds />
       <div className="content">
-        <h1>Your CR <span className="highlight">Online Now!</span></h1>
-        <p>Transforming the Way You Host Your Applications</p>
+        <h1>Ur Web Apps | <span className="highlight">Notion-Powered!</span></h1>
+        <p>Transforming the way you host your corner of Internet space</p>
         <EmailForm />
         <Timeline />
         <p className="beta">
